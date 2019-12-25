@@ -1,10 +1,29 @@
-plugins {
-    id 'java-library'
-}
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
 
 repositories {
     jcenter()
     mavenCentral()
+}
+
+version = '1.0.1'
+group = 'org.jet'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = project.name
+            version = project.version
+
+            from components.java
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name, 'Implementation-Version': project.version)
+    }
 }
 
 dependencies {
