@@ -2,6 +2,7 @@ package org.jet.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  * A transaction wrapper, to abstracts boiler plate code for Transaction Management.
@@ -27,7 +28,7 @@ public class Transaction implements AutoCloseable
 
     public Transaction(final Connection connection)
     {
-        this.connection = connection;
+        this.connection = Objects.requireNonNull(connection);
     }
 
     public Transaction(final ConnectionSupplier supplier) throws SQLException
